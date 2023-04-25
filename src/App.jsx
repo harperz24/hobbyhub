@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { supabase } from "./supabaseClient";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Layout, Login, Feed, Post, NewPost } from "./routes";
+import { fetchLogout } from "./services";
+import './App.css';
+import { Loading } from "./components";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [session, setSession] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function fetchSession() {
+    setIsLoading(true);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setSession(prev => session);
+      }
+    });
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        setSession(prev => session);
+      }
+    })
+    setIsLoading(false);
+  }
+
+  const handleLogout = async () => {
+    setSession(prev => null);
+    await fetchLogout();
+  }
+
+  useEffect(() => {
+    fetchSession();
+  }, []);
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (!session) {
+    return <Login />
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+      <Route exact path="login" element={<Login />} />
+        <Route path="/" element={ <Layout session={session} handleLogout={handleLogout} /> }>
+          <Route index element={<Feed session={session} />} />
+          <Route path="posts/:id" element={<Post session={session} />} />
+          <Route path="posts/new" element={<NewPost session={session} />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;

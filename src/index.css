@@ -24,9 +24,9 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
+  margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -46,6 +46,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  
 }
 button:hover {
   border-color: #646cff;
@@ -64,6 +65,44 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background: #d3d5ff;
   }
+  button:disabled {
+    background: #ededed;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  font-size: 1rem;
+  padding: .25rem;
+}
+
+textarea {
+  font-size: 1rem;
+  padding: .25rem;
+  resize: none;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+select,
+option {
+  height: 2rem;
+  font-size: 1rem;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
 }

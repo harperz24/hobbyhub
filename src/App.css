@@ -1,42 +1,272 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background: ghostwhite;
+  min-height: 100vh;
+}
+
+/* common */
+.loading,
+.success,
+.failure {
+  margin-top: 30vh;
+}
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+  padding: .75rem 2rem;
+  background: white;
+  border-bottom: 1px solid gainsboro;
+}
+
+nav h3 {
+  margin: 0;
+}
+
+.navbar-right,
+.me,
+.me-account {
+  display: inherit;
+  align-items: inherit;
+}
+.navbar-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.navbar-right,
+.me {
+  gap: 2rem;
+}
+.me-account {
+  gap: .25rem;
+}
+.small-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  border: 1px solid gainsboro;
+}
+.small-avatar svg {
+  margin-left: .5rem;
+  margin-top: .5rem;
+}
+
+/* auth */
+.auth form {
+  margin: 30vh auto;
+}
+
+/* feed */
+.sort-filter-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  height: 2rem;
+}
+
+.search-form button {
+  color: #535bf2;
+  border:1px solid gray;
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 0 .75rem;
+}
+
+.sort-form {
+  margin-left: auto;
+}
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed, 
+.post-item-on-post {
+  margin: 2rem 0;
+}
+
+.post-form-container {
+  width: 40rem;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: .5rem;
+  border: 1px solid #747bff;
+  background: white;
+}
+
+.post-form button {
+  width: max-content;
+  margin-left: auto;
+}
+
+.post-list,
+.post-item-on-post {
+  display: flex;
+  flex-direction: column;
+  width: 45rem;
+  gap: 1rem;
+}
+
+.post-management {
+  display: flex;
+  align-items: center;
+}
+
+.creator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.creator h4 {
+  margin: 0;
+}
+
+.avatar {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  border: 1px solid gainsboro;
+  align-items: center;
+}
+.avatar svg {
+  margin-left: .75rem;
+}
+.water{
+  background: #CBE4F9;
+}
+.ice {
+  background: #CDF5F6;
+}
+.beige {
+  background: #EFF9DA;
+}
+.antique {
+  background: #F9EBDF;
+}
+.pale-pink {
+  background: #F9D8D6;
+}
+.soup {
+  background: #D6CDEA;
+}
+
+.post-time,
+.comment-time {
+  color: gray;
+  font-size: .8rem;
+  margin-left: .5rem;
+  margin-top: .1rem;
+}
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-right: 3rem;
+  border-radius: .5rem;
+  border: 1px solid gainsboro;
+  background: white;
+}
+
+.post-item img {
+  width: 37rem;
+}
+.post-block {
+  margin-left: 4rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14rem;
+  margin-top: 1rem;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: .5rem; 
+}
+
+.tbc {
+  width: 3rem;
+}
+
+.upvotes {
+  color: #646cff;
+}
+
+.upvotes:hover {
+  cursor: pointer;
+  color: #535bf2;
+}
+
+.create-comment,
+.comment-list {
+  margin-top: 2rem;
+}
+.create-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.create-comment form {
+  display: inherit;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.create-comment textarea {
+  width: 33rem;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.no-comments {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.comment-management {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.comment-management button {
+  padding: .25rem;
+  background: none;
+  margin-left: auto;
+  margin-right: 1rem;
+  color: #646cff; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
+.comment-management button:hover {
+  color: #747bff;
+}  
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.comment-block {
+  margin-left: 3rem;
 }
