@@ -72,9 +72,11 @@ function Feed({ session }) {
     onSearch(keywords);
   }
 
-  function handleSortSubmit(e) {
+  async function handleSortSubmit(e) {
     setSortBy(prev => e.target.value);
     e.preventDefault();
+    const { data } = await fetchPosts();
+    setPosts(prev => data);
     if (e.target.value === "upvotes") {
       setDisplayedPosts(prev => posts.toSorted((a, b) => b.upvotes[0].count - a.upvotes[0].count));
     } else {
