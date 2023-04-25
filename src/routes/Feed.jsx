@@ -59,10 +59,7 @@ function Feed({ session }) {
     }
   }
 
-
   ////////////////////////////////////////////////////////////////////// sort, filter
-
-
   function handleSearchChange(e) {
     setKeywords(prev => e.target.value);
   }
